@@ -6,7 +6,7 @@
 /*   By: vpawar <vpawar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:42:27 by vpawar            #+#    #+#             */
-/*   Updated: 2024/04/20 19:58:08 by vpawar           ###   ########.fr       */
+/*   Updated: 2024/04/23 20:44:40 by vpawar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,31 @@ size_t	ft_strlen(const char *s)
 	return (l);
 }
 
+
 char	*ft_strlcat_improved(char *dst, const char *src,
 		size_t start, size_t end)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(dst + i))
-		i++;
+	if (dst == NULL)
+	{
+		dst = (char *)malloc(end - start + 1,1);
+		if (dst == NULL)
+			return (NULL);
+	}
+	else
+	{
+		while (*(dst + i))
+			i++;
+	}
 	while (start < end && *(src + start))
 	{
 		*(dst + i) = *(src + start);
-		i++;
 		start++;
+		i++;
 	}
 	*(dst + i) = '\0';
 	return (dst);
 }
+

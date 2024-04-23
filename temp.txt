@@ -1,0 +1,52 @@
+
+char	*ft_strlcat_improved(char *dst, const char *src,
+		size_t start, size_t end)
+{
+	size_t	i;
+
+	i = 0;
+	if (dst == NULL)
+	{
+		dst = (char *)malloc(end - start);
+		if (dst == NULL)
+			return (NULL);
+	}
+	else
+	{
+		while (*(dst + i))
+			i++;
+	}
+	while (start < end && *(src + start))
+	{
+		*(dst + i) = *(src + start);
+		start++;
+		i++;
+	}
+	return (dst);
+}
+
+char	*ft_strlcat_improved(char *dst, const char *src,
+		size_t start, size_t end)
+{
+	char	*temp;
+	size_t	i;
+
+	i = 0;
+	temp = (char *)malloc(ft_strlen(dst) + end - start + 1);
+	if (temp == NULL)
+		return (NULL);
+	while (*(dst + i))
+	{
+		*(temp + i) = *(dst + i);
+		i++;
+	}
+	while (start < end && *(src + start))
+	{
+		*(temp + i) = *(src + start);
+		start++;
+		i++;
+	}
+	free(dst);
+	*(temp + i) = '\0';
+	return (temp);
+}
